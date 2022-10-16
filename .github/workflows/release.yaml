@@ -1,11 +1,17 @@
-on:
+# This is a basic workflow to show the manual trigger
+name: Release-Actions-Workflow
+
+on: 
   push:
     branches:
       - main
   pull_request:
     branches:
       - main
-
+jobs:
+ 
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: Get branch name
         id: branch-name
