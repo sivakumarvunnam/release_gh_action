@@ -5,10 +5,12 @@ on:
     branches:
       - main
       - release_v*
+      - develop
   pull_request:
     branches:
       - main
       - release_v*
+      - develop
 jobs:
   build:
     runs-on: ubuntu-latest
