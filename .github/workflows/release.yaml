@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+    steps:
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v6
+        
+      - name: Running on the default branch.
+        if: steps.branch-name.outputs.is_default == 'true'
+        run: |
+          echo "Running on default: ${{ steps.branch-name.outputs.current_branch }}"
+        # Outputs: "Running on default: main".
+      
+      - name: Running on a pull request branch.
+        if: steps.branch-name.outputs.is_default == 'true'
+        run: |
+          echo "Running on pr: ${{ steps.branch-name.outputs.current_branch }}"
+        # Outputs: "Running on pr: feature/test".
+      - name: Read Services from file
+        id: template
+        uses: traversals-analytics-and-intelligence/file-reader-action@master
+        with:
+          file: ./services.yaml
+
+      - name: Get the services list
+        run: echo "${{ steps.template.outputs.content }}"
