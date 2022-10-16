@@ -27,13 +27,14 @@ jobs:
         if: steps.branch-name.outputs.is_default == 'true'
         run: |
           echo "Running on pr: ${{ steps.branch-name.outputs.current_branch }}"
+          pwd
         # Outputs: "Running on pr: feature/test".
         
       - name: Read package.json
         id: package
         uses: juliangruber/read-file-action@v1
         with:
-          path: ./services.yaml
+          path: services.yaml
 
       - name: Echo package.json
         run: echo "${{ steps.package.outputs.content }}"
