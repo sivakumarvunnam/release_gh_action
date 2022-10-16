@@ -1,0 +1,4 @@
+release:
+  - adminservice
+  - apiservice
+  - authservice
