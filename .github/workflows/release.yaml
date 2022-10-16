@@ -32,7 +32,7 @@ jobs:
         id: template
         uses: traversals-analytics-and-intelligence/file-reader-action@master
         with:
-          file: ./services.yaml
+          file: services.yaml
 
       - name: Get the services list
         run: echo "${{ steps.template.outputs.content }}"
