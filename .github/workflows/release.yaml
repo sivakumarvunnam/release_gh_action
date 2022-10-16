@@ -1,6 +1,5 @@
 # This is a basic workflow to show the manual trigger
-name: Release-Actions-Workflow
-
+name: Release-Action-Workflow
 on: 
   push:
     branches:
@@ -9,11 +8,11 @@ on:
     branches:
       - main
 jobs:
- 
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+     
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v6
@@ -31,11 +30,11 @@ jobs:
           pwd
         # Outputs: "Running on pr: feature/test".
         
-      - name: Read package.json
-        id: package
-        uses: juliangruber/read-file-action@v1
+      - name: Read Services from file
+        id: template
+        uses: traversals-analytics-and-intelligence/file-reader-action@master
         with:
-          path: ./services.yaml
+          file: ./release/services.yaml
 
-      - name: Echo package.json
-        run: echo "${{ steps.package.outputs.content }}"
+      - name: Echo services list
+        run: echo "${{ steps.template.outputs.content }}"
