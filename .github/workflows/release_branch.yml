@@ -1,8 +1,6 @@
 name: Get release branch
-on:
-  pull_request:
-    branches:
-      - main
+on: create
+
 jobs:
   get-release:
     name: Get the release branch version number
