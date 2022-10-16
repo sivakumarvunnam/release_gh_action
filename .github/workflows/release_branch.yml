@@ -1,0 +1,20 @@
+name: Get release branch
+on: create
+
+jobs:
+  get-release:
+    name: Get the release branch version number
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: valadas/get-release-branch-version@v1
+        id: branchVersion
+      - name: Dump the version info
+        env:
+          MAJOR: ${{ steps.branchVersion.major }}
+          MINOR: ${{ steps.branchVersion.minor }}
+          PATCH: ${{ steps.branchVersion.patch }}
+          MANIFEST_SAFE_VERSION_STRING: ${{ steps.branchVersion.manifestSafeVersionString }}
+        run: "echo major: $MAJOR minor: $MINOR patch: $PATCH manifestSafeVersionString: $MANIFEST_SAFE_VERSION_STRING"
